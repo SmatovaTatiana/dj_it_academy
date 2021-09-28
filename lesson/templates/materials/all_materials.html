@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    {% for material in materials %}
+        <h3>{{ material.title }} </h3>
+        <p>{{ material.body|truncatewords:5 }}</p>
+        autored: {{ material.author }}
+        <hr>
+    {% endfor %}
+{% endblock %}
