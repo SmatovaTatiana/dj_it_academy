@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ material.title }} <!--заголовок берется из title, используется тег автоподстановки значений-->
+{% endblock %}
+<!-- -->
+{% block body %}
+    <a href="{% url "lesson:all_material" %}"> Back to all materials </a>
+    <h1>{{ material.title }}</h1>
+    <p>{{ material.material_tape }}</p>
+    <p>{{ material.body }}</p>
+    Published: {{ material.publish }}, autored: {{ material.author }}
+{% endblock %}

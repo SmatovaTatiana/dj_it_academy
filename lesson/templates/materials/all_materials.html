@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 
+{% block title %}
+    all materials
+{% endblock %}
+
 {% block body %}
     {% for material in materials %}
         <h3>{{ material.title }} </h3>
         <p>{{ material.body|truncatewords:5 }}</p>
-        autored: {{ material.author }}
+        authored: {{ material.author }}<br><br>
+        <a href="{{ material.get_absolute_url }}"> Go to material </a>
         <hr>
     {% endfor %}
 {% endblock %}
