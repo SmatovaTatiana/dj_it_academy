@@ -29,5 +29,6 @@ class Material(models.Model):
                                      choices=MATERIAL_TYPE,
                                      default='theory')
 
-    def __str__(self):
+"""    def __str__(self):
         return self.title  # для отображения названий материалов в админке
+# отключили, т.к. настроили в админке"""
