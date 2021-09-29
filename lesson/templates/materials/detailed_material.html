@@ -4,9 +4,9 @@
 {% endblock %}
 <!-- -->
 {% block body %}
-    <a href="{% url "lesson:all_material" %}"> Back to all materials </a>
+    <a href="{% url "lesson:all_materials" %}"> Back to all materials </a>
     <h1>{{ material.title }}</h1>
     <p>{{ material.material_tape }}</p>
     <p>{{ material.body }}</p>
-    Published: {{ material.publish }}, autored: {{ material.author }}
+    Published: {{ material.publish }}, authored: {{ material.author }}
 {% endblock %}
