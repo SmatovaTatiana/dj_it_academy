@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+    Share material
+{% endblock %}
+<!-- -->
+{% block body %}
+    {% if not sent %}  <!--добавляем флаг (добавлено во вьюшку) если не было отправлено, открываем форму-->
+        <h1>Share {{ material.title }} via email</h1>
+        <form action="." method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Share">
+        </form>
+    {% else %}  <!--если отправлено-->
+        Email has been sent
+    {% endif %}
+    <a href="{% url "lesson:all_materials" %}"> Back to all materials </a>
+{% endblock %}

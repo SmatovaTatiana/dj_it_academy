@@ -9,4 +9,6 @@
     <p>{{ material.material_tape }}</p>
     <p>{{ material.body }}</p>
     Published: {{ material.publish }}, authored: {{ material.author }}
+    <br>
+    <a href="{% url "lesson:share_material" material.id %}"> Share </a>
 {% endblock %}

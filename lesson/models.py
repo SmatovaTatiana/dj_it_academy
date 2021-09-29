@@ -36,7 +36,7 @@ class Material(models.Model):
                               self.publish.month,
                               self.publish.day,
                               self.slug])
-
+# get_absolute_url - это не метод а отдельная функция, он должен быть в модели
 
 """    def __str__(self):
         return self.title  # для отображения названий материалов в админке
