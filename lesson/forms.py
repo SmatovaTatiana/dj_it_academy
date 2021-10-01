@@ -1,4 +1,5 @@
 from django import forms  # импортируем базовый класс для форм
+from . import models
 
 
 class EmailMaterialForm(forms.Form):  # класс унаследуем от спец.класса
@@ -7,3 +8,9 @@ class EmailMaterialForm(forms.Form):  # класс унаследуем от с�
     comment = forms.CharField(required=False,          # комментарий. Необязательное поле
                               widget=forms.Textarea)
 # виджет - спец.функционал, кот. позволяет интерактивные взаимодействия
+
+
+class MaterialForm(forms.ModelForm):
+    class Meta:
+        model = models.Material
+        fields = ('title', 'body', 'material_tape')

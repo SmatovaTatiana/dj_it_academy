@@ -12,4 +12,6 @@
         <a href="{{ material.get_absolute_url }}"> Go to material </a>
         <hr>
     {% endfor %}
+
+    <a href="{% url "lesson:create_material" %}"> Create new material </a>
 {% endblock %}
