@@ -127,3 +127,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # для настройки отправки писем
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+LOGIN_URL = '/lesson/login/'
