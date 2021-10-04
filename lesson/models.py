@@ -16,7 +16,7 @@ class Material(models.Model):
     publish = models.DateTimeField(default=timezone.now)
 
     updated = models.DateTimeField(auto_now=True)
-    created = models.DateTimeField(auto_created=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     author = models.ForeignKey(User, on_delete=models.CASCADE,
                                related_name='user_materials')
@@ -38,6 +38,23 @@ class Material(models.Model):
                               self.slug])
 # get_absolute_url - это не метод а отдельная функция, он должен быть в модели
 
-"""    def __str__(self):
+    def __str__(self):
         return self.title  # для отображения названий материалов в админке
-# отключили, т.к. настроили в админке"""
+# отключили, т.к. настроили в админке
+# подключили снова для отображения в других моделях
+
+
+class Comment(models.Model):
+
+    name = models.CharField(max_length=255)
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    material = models.ForeignKey(Material,
+                                 on_delete=models.CASCADE,
+                                 related_name='comments')  # для того чтобы получить все комментарии из материала, мы могли получить их по атрибуту
+
+    def __str__(self):
+        return '@{name} {body} for {material}'. format(name=self.name,
+                                                       body=self.body,
+                                                       material=self.material
+                                                       )
