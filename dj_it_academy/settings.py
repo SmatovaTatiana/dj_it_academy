@@ -128,3 +128,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # для настройки отправки писем
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 LOGIN_URL = '/lesson/login/'
+"""LOGIN_REDIRECT_URL = '/lesson/'
+LOGOUT_URL = '/lesson/logout/'
+LOGOUT_REDIRECT_URL = '/lesson/'"""
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend']
+"""The default ModelBackend authentication backend started rejecting inactive users in Django 1.10. 
+Therefore your authenticate() call returns None, and you get the Invalid username/password! message from the outer 
+if/else statement.
+As Daniel says, if you use the default ModelBackend, you no longer need to check user.is_active in your login view.
+If you really want authenticate to return inactive users, then you can use AllowAllUsersModelBackend instead. 
+If you do this, then it is your responsibility to check the is_active flag in your login view.
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend']"""

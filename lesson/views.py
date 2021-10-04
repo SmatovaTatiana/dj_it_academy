@@ -3,7 +3,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
-from django.http import HttpResponse
+from django.http import HttpResponse  # возвращает ответ
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 
@@ -24,15 +24,24 @@ def all_materials(request):
                   {'materials': materials})
 
 
-@login_required
+@login_required  # ограничиваем доступ
 def detailed_material(request, y, m, d, slug):
     material = get_object_or_404(models.Material,
                                  publish__year=y,
                                  publish__month=m,
                                  publish__day=d,
                                  slug=slug)
+    if request.method == "POST":
+        form = forms.CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.material = material
+            comment.save()
+    else:
+        form = forms.CommentForm()
+
     return render(request, "materials/detailed_material.html",
-                  {"material": material})
+                  {"material": material, 'form': form})
 
 
 # обработчик формы отправки почты
@@ -60,11 +69,11 @@ def share_material(request, material_id):
             send_mail(subject, body, 'admin@my.com', [cd['to_email'], ])
             sent = True  # добавляем флаг, используется при отправке формы
     else:
-        form = forms.EmailMaterialForm()    # если не post запрос, создаем пустой объект формы
+        form = forms.EmailMaterialForm()  # если не post запрос, создаем пустой объект формы
 
-    return render(request,    # передаем запрос
-                  "materials/share.html",    # передаем страничку
-                  {'material': material, 'form': form, 'sent': sent})    # передаем контекст (материал и форму)
+    return render(request,  # передаем запрос
+                  "materials/share.html",  # передаем страничку
+                  {'material': material, 'form': form, 'sent': sent})  # передаем контекст (материал и форму)
 
 
 def create_material(request):
@@ -96,9 +105,11 @@ def custom_login(request):
                 username=cd['username'],
                 password=cd['password'],
             )
-            if user is not None:
-                if user.is_active:
+            if user is not None:  # используется None, а не if not user т.к. могут быть анонимные юзеры, юзер есть,
+                # но прав нет и т.д. Если использовать if user, могут быть проблемы с незакончившими регистрацию и т.д.
+                if user.is_active:  # флаг. При нормальной регистрации с уведомлением на почту
                     login(request, user)
+                    # from request берутся данные о клиенте и говорится, что это он этот user, после этого он залогинен
                     return HttpResponse('logged in')
                 else:
                     return HttpResponse('User not active')
@@ -108,5 +119,5 @@ def custom_login(request):
     else:
         form = forms.LoginForm()
     return render(request,
-                  'login.html',
+                  'login.html',  # в корне, т.к. к приложению напрямую не относится
                   {'form': form})
