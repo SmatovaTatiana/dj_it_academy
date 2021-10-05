@@ -15,7 +15,15 @@ class MaterialForm(forms.ModelForm):
         model = models.Material
         fields = ('title', 'body', 'material_tape')
 
+
 # форма для авторизации пользователей
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
+
+
+# форма для комментариев
+class CommentForm(forms.Form):
+    class Meta:
+        model = models.Comment
+        fields = ('name', 'body')

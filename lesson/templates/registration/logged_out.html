@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Logout page
+{% endblock %}
+
+{% block body %}
+    You've been logged out. You can login again <br>
+    <a href="{% url "lesson:login" %}"> Login </a><br>
+{% endblock %}

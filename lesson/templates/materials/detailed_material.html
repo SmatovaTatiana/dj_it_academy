@@ -11,4 +11,13 @@
     Published: {{ material.publish }}, authored: {{ material.author }}
     <br>
     <a href="{% url "lesson:share_material" material.id %}"> Share </a>
+    <br>
+    {% for comment in material.comment.all %}
+        {{ comment.body }} <br>
+    {% endfor %}
+    <form action="." method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Add comment">
+        </form>
 {% endblock %}
