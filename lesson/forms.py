@@ -23,7 +23,7 @@ class LoginForm(forms.Form):
 
 
 # форма для комментариев
-class CommentForm(forms.Form):
+class CommentForm(forms.ModelForm):
     class Meta:
         model = models.Comment
         fields = ('name', 'body')

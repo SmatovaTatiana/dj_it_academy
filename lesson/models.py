@@ -52,6 +52,7 @@ class Comment(models.Model):
     material = models.ForeignKey(Material,
                                  on_delete=models.CASCADE,
                                  related_name='comments')  # для того чтобы получить все комментарии из материала, мы могли получить их по атрибуту
+# для отображения подписи в комментариях
 
     def __str__(self):
         return '@{name} {body} for {material}'. format(name=self.name,

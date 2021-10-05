@@ -6,6 +6,7 @@ from django.core.mail import send_mail
 from django.http import HttpResponse  # возвращает ответ
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
+from django.shortcuts import redirect
 
 from . import models
 from . import forms
@@ -37,6 +38,8 @@ def detailed_material(request, y, m, d, slug):
             comment = form.save(commit=False)
             comment.material = material
             comment.save()
+            return redirect(material)
+
     else:
         form = forms.CommentForm()
 

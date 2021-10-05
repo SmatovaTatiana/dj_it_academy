@@ -12,9 +12,14 @@
     <br>
     <a href="{% url "lesson:share_material" material.id %}"> Share </a>
     <br>
-    {% for comment in material.comment.all %}
-        {{ comment.body }} <br>
-    {% endfor %}
+    {% if material.comments.all %}
+        <h3>Comments:</h3>
+        {% for comment in material.comments.all %}
+            #{{ forloop.counter }} {{ comment.name }} at {{ comment.created }}:<br> <!-- счетчик комментариев-->
+            {{ comment.body }} <br> <br>
+        {% endfor %}
+    {% endif %}
+
     <form action="." method="post">
             {{ form.as_p }}
             {% csrf_token %}
