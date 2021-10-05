@@ -15,5 +15,6 @@
             <input type="hidden" name="next" value="{{ next }}"> <!--параметр, который при редиректе на логин будет указывать на следующую страницу куда направлялись-->
             <input type="submit" value="Login">
         </form>
+        <a href="{% url "lesson:password_reset" %}"> Forgot password? </a><br>
     {% endif %}
 {% endblock %}
