@@ -139,8 +139,8 @@ If you do this, then it is your responsibility to check the is_active flag in yo
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend']"""
 
 # login settings
-LOGIN_URL = '/lesson/login/'
-LOGIN_REDIRECT_URL = '/lesson/'
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
 
-LOGOUT_URL = '/lesson/logout/'
-LOGOUT_REDIRECT_URL = '/lesson/'
+LOGOUT_URL = '/logout/'
+LOGOUT_REDIRECT_URL = '/'
