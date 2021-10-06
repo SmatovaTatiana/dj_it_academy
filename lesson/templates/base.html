@@ -3,18 +3,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}MY DEFAULT TITLE {% endblock %}</title>
+    <title>{% block title %}MY DEFAULT TITLE{% endblock %}</title>
     <link href="{% static "style.css" %}" rel="stylesheet">
 </head>
-
 <body>
 {% if request.user.is_authenticated %}
-        <a href="{% url "lesson:logout" %}">logout </a><br>
+        <a href="{% url "lesson:logout" %}">logout </a>
         <a href="{% url "lesson:profile" %}">profile </a>
 {% else %}
         <a href="{% url "lesson:login" %}">login </a><br>
+        <a href="{% url "lesson:register" %}">register </a><br>
 {% endif %}
 
-{% block body %} {% endblock %}
+{% block body %}{% endblock %}
 </body>
 </html>

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Registration complete
+{% endblock %}
+
+{% block body %}
+    <h1>Hi {{ user.first_name }}</h1>
+
+    You've been registered. Now you can
+    <a href="{% url "lesson:login" %}">login </a><br>
+
+<a href="{% url "lesson:all_material" %}"> Back to all materials </a>
+{% endblock %}
