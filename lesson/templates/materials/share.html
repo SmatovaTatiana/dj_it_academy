@@ -12,7 +12,7 @@
             <input type="submit" value="Share">
         </form>
     {% else %}  <!--если отправлено-->
-        Email has been sent
+    <br><br> Email has been sent
     {% endif %}
-    <a href="{% url "lesson:all_materials" %}"> Back to all materials </a>
+    <br><br><a href="{% url "lesson:all_materials" %}"> Back to all materials </a>
 {% endblock %}
