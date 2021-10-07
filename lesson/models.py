@@ -65,5 +65,8 @@ class Comment(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 on_delete=models.CASCADE)
-    birth = models.DateTimeField(blank=True, null=True)
+    birth = models.DateField(blank=True, null=True)
     photo = models.ImageField(upload_to="user/%Y/%m/%d", blank=True)
+
+    def __str__(self):
+        return str(self.user)

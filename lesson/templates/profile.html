@@ -8,5 +8,6 @@
     <p>{{ user.first_name }}, {{ user.last_name }}</p>
     <p>{{ user.profile.birth }}</p>
     <p> <img src="{{ user.profile.photo.url }}" alt="alt text"></p>
-
+    <a href="{% url "lesson:edit_profile" %}">edit profile </a><br>
+    <a href="{% url "lesson:all_materials" %}"> Back to all materials </a>
 {% endblock %}
